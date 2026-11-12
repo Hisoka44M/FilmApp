@@ -56,6 +56,7 @@ public partial class App : Application
             services.AddSingleton(new HttpClient { Timeout = TimeSpan.FromSeconds(10) });
             services.AddSingleton<TmdbClient>();
             services.AddSingleton<IMovieAdapter, TmdbMovieAdapter>();
+            services.AddTransient<MovieImportService>();
 
             Services = services.BuildServiceProvider();
 
