@@ -58,6 +58,7 @@ public partial class App : Application
             services.AddSingleton<IMovieAdapter, TmdbMovieAdapter>();
             services.AddTransient<MovieImportService>();
             services.AddTransient<ViewingService>();
+            services.AddTransient<CatalogService>();
 
             Services = services.BuildServiceProvider();
 
