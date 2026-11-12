@@ -1,12 +1,14 @@
-﻿using System.IO;
-using System.Windows;
-using FilmApp.Data;
+﻿using FilmApp.Data;
 using FilmApp.Services;
+using FilmApp.Services.Tmdb;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using System.IO;
+using System.Net.Http;
+using System.Windows;
 
 namespace FilmApp;
 
@@ -50,6 +52,9 @@ public partial class App : Application
 
             services.AddTransient<AuthService>();
             // Дальше сюда добавляются остальные сервисы, ViewModel и окна
+
+            services.AddSingleton(new HttpClient { Timeout = TimeSpan.FromSeconds(10) });
+            services.AddSingleton<TmdbClient>();
 
             Services = services.BuildServiceProvider();
 
