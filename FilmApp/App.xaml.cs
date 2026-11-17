@@ -59,6 +59,7 @@ public partial class App : Application
             services.AddTransient<MovieImportService>();
             services.AddTransient<ViewingService>();
             services.AddTransient<CatalogService>();
+            services.AddTransient<CollectionService>();
 
             Services = services.BuildServiceProvider();
 
