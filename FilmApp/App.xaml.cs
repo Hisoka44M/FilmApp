@@ -22,6 +22,16 @@ public partial class App : Application
     {
         base.OnStartup(e);
 
+
+        // Любая необработанная ошибка интерфейса: в журнал и сообщение, приложение не закрывается
+        DispatcherUnhandledException += (_, args) =>
+        {
+            Log.Error(args.Exception, "Необработанное исключение интерфейса");
+            MessageBox.Show("Произошла непредвиденная ошибка. Подробности в журнале.",
+                "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            args.Handled = true;
+        };
+
         try
         {
             // Каталог данных: %LocalAppData%\FilmApp
@@ -63,6 +73,7 @@ public partial class App : Application
             services.AddTransient<CollectionService>();
             services.AddTransient<RecommendationService>();
             services.AddTransient<UserAdminService>();
+            services.AddSingleton<UserSession>();
 
             Services = services.BuildServiceProvider();
 
