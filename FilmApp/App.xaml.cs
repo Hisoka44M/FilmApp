@@ -62,6 +62,7 @@ public partial class App : Application
             services.AddTransient<CatalogService>();
             services.AddTransient<CollectionService>();
             services.AddTransient<RecommendationService>();
+            services.AddTransient<UserAdminService>();
 
             Services = services.BuildServiceProvider();
 
