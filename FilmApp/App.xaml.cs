@@ -9,6 +9,7 @@ using Serilog;
 using System.IO;
 using System.Net.Http;
 using System.Windows;
+using FilmApp.Services.Recommendations;
 
 namespace FilmApp;
 
@@ -60,6 +61,7 @@ public partial class App : Application
             services.AddTransient<ViewingService>();
             services.AddTransient<CatalogService>();
             services.AddTransient<CollectionService>();
+            services.AddTransient<RecommendationService>();
 
             Services = services.BuildServiceProvider();
 
